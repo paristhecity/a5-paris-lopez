@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "active": 1,
+      "students": [
+        {
+          "first": "Paris",
+          "last": "Lopez",
+          "active": 0,
+          "assignments": [
+            {
+              "assignment": "A1",
+              "grade": 100
+            }
+          ]
+        },
+        {
+          "first": "Cormac",
+          "last": "Lynch-Collier",
+          "active": 0,
+          "assignments": []
+        }
+      ]
+    },
+    {
+      "username": "teacher1",
+      "password": "teacher1",
+      "active": 0,
+      "students": []
+    }
+  ]
+}
