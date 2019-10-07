@@ -1,0 +1,203 @@
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import {Link, Router} from 'react-router-dom';
+
+
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
+
+
+    render() {
+        return (
+            <div className="Home">
+                <div className="container">
+                    <h1>
+                        Class Roster
+                    </h1>
+                    <form>
+                        <div className="row">
+                            <div className="col">
+                                <input type="text" id="first" className="form-control" placeholder="First name">
+                            </div>
+                            <div className="col">
+                                <input type="text" id="last" className="form-control" placeholder="Last name">
+                            </div>
+                            <div className="col">
+                                <button id="addStudent" type="submit" className="form-control btn-primary">Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+
+/*
+const occupyStudents = function( e ) {
+    fetch('/occupyStudents', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(function(response) {
+        console.log(response)
+        return response.json();
+    }).then(function(data) {
+        console.log(data)
+        let students = data;
+        let i
+        for(i = 0; i < students.length; i++) {
+            let student = students[i]
+            let assignments = student.assignments
+            var grade = calculateGrade(assignments)
+            fillStudentInfo(student.first, student.last, grade)
+        }
+        console.log(students)
+    })
+}
+
+const calculateGrade = function( assignments ) {
+    var sum = 0
+    let i
+    if(assignments !== undefined && assignments.length != 0) {
+        for(i = 0; i < assignments.length; i++){
+            sum += parseInt(assignments[i].grade)
+        }
+        return (sum/assignments.length).toFixed(2)
+    }
+    else
+        return 0
+}
+
+
+const addStudent = function( e ) {
+    e.preventDefault()
+    console.log("Add Student")
+
+    const firstName = document.querySelector('#first').value
+    const lastName = document.querySelector('#last').value
+    const active = 0
+    const assignments = []
+
+    const info = {first: firstName, last: lastName, active: active, assignments: assignments}
+    const body = JSON.stringify(info)
+
+    fetch('/addStudent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body
+    }).then(function( response ) {
+        console.log(response)
+        var grade = calculateGrade( assignments );
+        fillStudentInfo(firstName, lastName, grade);
+    });
+
+    return false;
+};
+
+const removeStudent = function( first, last ) {
+    console.log("Remove Student")
+    const info = {first: first, last: last }
+    const body = JSON.stringify(info)
+    fetch('/deleteStudent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body
+    }).then(function(response) {
+        console.log(response)
+    })
+};
+
+const getStudentInfo = function( first ) {
+    console.log("Retrieve Student Information: " + first)
+    setActiveStudent(first);
+    getActives();
+    //window.location.href = "/infoPage/studentInfo.html"; //Link to infoPage
+};
+
+const getActives = function( ) {
+    console.log("Retrieving Active User and Student");
+    fetch('/student', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(function(response) {
+        console.log(response);
+        return response.json();
+    }).then(function(data) {
+        console.log(data)
+    })
+}
+
+
+const setActiveStudent = function(first) {
+    console.log("Set Active Student");
+    var ret = 'nothing';
+    const info = {student: first};
+    const body = JSON.stringify(info);
+    return fetch( '/activateStudent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body
+    }).then(function(response) {
+        console.log(response)
+    }).catch(function(err) {
+        console.log(err)
+    })
+}
+
+
+const fillStudentInfo = function( firstName, lastName, grade ) {
+    var start = document.querySelector("tbody");
+    var row = document.createElement("tr");
+
+    var cell_firstName = document.createElement("td");
+    cell_firstName.innerHTML = firstName;
+    cell_firstName.setAttribute("scope", "row");
+    var cell_lastName = document.createElement("td");
+    cell_lastName.innerHTML = lastName;
+    var cell_grade = document.createElement("td");
+    cell_grade.innerHTML = grade;
+    var cell_info = document.createElement("td");
+    var cell_del = document.createElement("td");
+
+    var info = document.createElement("button");
+    info.setAttribute('type', 'button');
+    info.setAttribute('class', 'btn btn-secondary info');
+    info.innerHTML = "Information";
+    cell_info.appendChild(info);
+
+    var button = document.createElement("button");
+    button.setAttribute('type', 'delete');
+    button.setAttribute('class', 'btn btn-danger remove');
+    button.innerHTML = "Delete";
+    cell_del.appendChild(button);
+
+    row.appendChild(cell_firstName);
+    row.appendChild(cell_lastName);
+    row.appendChild(cell_grade);
+    row.appendChild(cell_info);
+    row.appendChild(cell_del);
+
+    start.appendChild(row)
+
+}
+
+window.onload = function() {
+    console.log("home.html: javascript loaded");
+    occupyStudents();
+
+    const addButton = document.querySelector("#addStudent");
+    addButton.onclick = addStudent
+
+
+}
+
+*/

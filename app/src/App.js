@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import {Link, Router} from 'react-router-dom';
 
 
 class App extends React.Component {
@@ -9,10 +10,33 @@ class App extends React.Component {
         super(props);
         this.state = {
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
 
+        const username = document.querySelector('#username').value;
+        const password = document.querySelector('#password').value;
+        const state  = document.querySelector('#state');
 
+        const body = { username: username, password: password };
+        console.log(body);
+        fetch('/login', {
+            method: 'POST',
+            body: body,
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then( response => {
+            console.log(response);
+            window.location.href = 'home.js'
+        })
+        .catch(err => {
+            console.log(err);
+            state.innerHTML = "Incorrect Username or Password";
+        });
+        return false;
+    };
 
     render() {
       return (
@@ -34,8 +58,8 @@ class App extends React.Component {
                         <label htmlFor="exampleInputPassword1">Password</label>
                         <input type="password" className="form-control" id="password" placeholder="Password"/>
                     </div>
+                    <button id="login" type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
                     <pre id="state"> </pre>
-                    <button id="login" type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>

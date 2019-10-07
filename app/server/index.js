@@ -104,13 +104,6 @@ app.post( '/activateStudent', function( request, response ) { //Sets selected st
 
 });
 
-app.get( '/student', function( request, response ) {
-    let i = findActiveUser();
-    let j = findActiveStudent( i );
-    let list = [i, j];
-    response.send(list)
-});
-
 app.post( '/addStudent', function( request, response ) {
     let i = findActiveUser();
     db.get('users['+i+'].students').push(request.body).write();
@@ -153,9 +146,16 @@ app.get( '/occupyStudents', function( request, response ) {
     response.send(studentList)
 });
 
+app.get( '/student', function( request, response ) {
+    let i = findActiveUser();
+    let j = findActiveStudent( i );
+    let list = [i, j];
+    response.send(list)
+});
+
 app.get( '/occupyAssignments', function( request, response ) {
     var assignmentList;
-    let usr = findActiveUser();;
+    let usr = findActiveUser();
     let student = findActiveStudent( usr );
     assignmentList = users[usr].students[student].assignments;
     response.send(assignmentList)
